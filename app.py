@@ -33,7 +33,6 @@ def index():
     }
 
     print "get post"
-    sys.stdout.flush()
     
     for post in Post.query.all():
         data = {}
@@ -50,7 +49,6 @@ def create_post():
     content = request.json
     print "new post"
     print content['title']
-    sys.stdout.flush()
     #if not request.json or not 'title' in request.json:
     #    abort(400)
     post = Post(title=content['title'], desc=content['desc'])
