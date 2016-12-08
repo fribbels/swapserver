@@ -49,7 +49,7 @@ def create_dev():
     post = Post(request.json.title, request.json.get('desc', ''))
     db.session.add(post)
     db.session.commit()
-    return jsonify( { 'post': post } ), 201
+    return jsonify( { 'post': request.json.title } ), 201
 
 
 if __name__ == '__main__':
