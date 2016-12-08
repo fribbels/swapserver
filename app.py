@@ -14,6 +14,7 @@ class Post(db.Model):
     title = db.Column(db.String(80))
     desc = db.Column(db.Text)
 
+
     #def __init__(self, title, desc):
     #    self.title = title
     #    self.desc = desc
@@ -33,7 +34,7 @@ def index():
     }
 
     print "get post"
-    
+
     for post in Post.query.all():
         data = {}
         data['title'] = post.title
@@ -46,15 +47,14 @@ def index():
 
 @app.route('/post/', methods = ['POST'])
 def create_post():
-    content = request.json
+    content = request.get_json()
     print "new post"
-    print content['title']
     #if not request.json or not 'title' in request.json:
     #    abort(400)
     post = Post(title=content['title'], desc=content['desc'])
     db.session.add(post)
     db.session.commit()
-    return jsonify( { 'post': 'post' } ), 202
+    return jsonify( { 'post': 1 } ), 202
 
 
 if __name__ == '__main__':
