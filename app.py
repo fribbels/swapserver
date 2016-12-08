@@ -48,7 +48,6 @@ def index():
 @app.route('/post', methods = ['POST'])
 def create_post():
     print "new post"
-    return
     content = request.get_json()
     #if not request.json or not 'title' in request.json:
     #    abort(400)
