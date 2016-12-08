@@ -20,14 +20,7 @@ class User(db.Model):
         return '<User %r>' % self.username
 
 def hello_world():
-    db.create_all()
-    admin = User('admin', 'admin@example.com')
-    guest = User('guest', 'guest@example.com')
-    db.session.add(admin)
-    db.session.add(guest)
-    db.session.commit()
-
-    return User.query.all()
+    return "Hi"
 
 if __name__ == '__main__':
     app.run()
