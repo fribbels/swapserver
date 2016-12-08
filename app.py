@@ -44,14 +44,14 @@ def index():
 
 @app.route('/post/', methods = ['POST'])
 def create_post():
-    content = request.get_json()
-    print(content)
+    content = request.json
+    print content['title']
     #if not request.json or not 'title' in request.json:
     #    abort(400)
     post = Post(title=content['title'], desc=content['desc'])
     db.session.add(post)
     db.session.commit()
-    return jsonify( { 'post': 1 } ), 202
+    return jsonify( { 'post': 'post' } )
 
 
 if __name__ == '__main__':
