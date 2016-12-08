@@ -14,6 +14,7 @@ class Post(db.Model):
     title = db.Column(db.String(80))
     desc = db.Column(db.Text)
     image = db.Column(db.Text)
+    userid = db.Column(db.Text)
 
 
     #def __init__(self, title, desc):
@@ -22,10 +23,11 @@ class Post(db.Model):
 
     #def __repr__(self):
     #    return '<Post %r>' % self.title
-    def __init__(self, title, desc, image):
+    def __init__(self, title, desc, image, userid):
         self.title = title
         self.desc = desc
         self.image = image
+        self.userid = userid
 
 db.create_all()
 
@@ -42,6 +44,7 @@ def index():
         data['title'] = post.title
         data['desc'] = post.desc
         data['image'] = post.image
+        data['userid'] = post.userid
         result['posts'].append(data)
 
     return jsonify(result)
@@ -54,7 +57,10 @@ def create_post():
     content = request.get_json()
     #if not request.json or not 'title' in request.json:
     #    abort(400)
-    post = Post(title=content['title'], desc=content['desc'], image=content['image'])
+    post = Post(title=content['title'], 
+                desc=content['desc'], 
+                image=content['image'],
+                userid=content['userid'])
     db.session.add(post)
     db.session.commit()
     return 'anything'
