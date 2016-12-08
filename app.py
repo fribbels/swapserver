@@ -54,7 +54,7 @@ def create_post():
     post = Post(title=content['title'], desc=content['desc'])
     db.session.add(post)
     db.session.commit()
-    return jsonify( { 'post': 1 } ), 202
+    return 'anything'
 
 
 if __name__ == '__main__':
