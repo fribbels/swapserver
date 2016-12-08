@@ -49,6 +49,13 @@ def index():
 def create_post():
     print "new post"
     return
+    content = request.get_json()
+    #if not request.json or not 'title' in request.json:
+    #    abort(400)
+    post = Post(title=content['title'], desc=content['desc'])
+    db.session.add(post)
+    db.session.commit()
+    return jsonify( { 'post': 1 } ), 202
 
 
 if __name__ == '__main__':
