@@ -45,7 +45,7 @@ def index():
     #return jsonify({'posts': Post.query.all()})
 
 
-@app.route('/post/', methods = ['POST'])
+@app.route('/post', methods = ['POST'])
 def create_post():
     print "new post"
     return
