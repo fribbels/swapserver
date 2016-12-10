@@ -31,7 +31,7 @@ class Post(db.Model):
         self.userid = userid
         self.username = username
 
-db.create_all()
+db.create_all() 
 
 @app.route('/get/', methods = ['GET'])
 def index():
