@@ -15,6 +15,7 @@ class Post(db.Model):
     desc = db.Column(db.Text)
     image = db.Column(db.Text)
     userid = db.Column(db.Text)
+    username = db.Column(db.Text)
 
 
     #def __init__(self, title, desc):
@@ -23,11 +24,12 @@ class Post(db.Model):
 
     #def __repr__(self):
     #    return '<Post %r>' % self.title
-    def __init__(self, title, desc, image, userid):
+    def __init__(self, title, desc, image, userid, username):
         self.title = title
         self.desc = desc
         self.image = image
         self.userid = userid
+        self.username = username
 
 db.create_all()
 
@@ -45,6 +47,7 @@ def index():
         data['desc'] = post.desc
         data['image'] = post.image
         data['userid'] = post.userid
+        data['username'] = post.username
         result['posts'].append(data)
 
     return jsonify(result)
@@ -60,7 +63,8 @@ def create_post():
     post = Post(title=content['title'], 
                 desc=content['desc'], 
                 image=content['image'],
-                userid=content['userid'])
+                userid=content['userid'],
+                username=content['username'])
     db.session.add(post)
     db.session.commit()
     return 'anything'
